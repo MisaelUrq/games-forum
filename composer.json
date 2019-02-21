@@ -6,7 +6,7 @@
         "framework",
         "laravel"
     ],
-    "license": "MIT", // It did not ask me this, but okey. I'm fine with that.
+    "license": "MIT",
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
