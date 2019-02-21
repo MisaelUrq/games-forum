@@ -15,6 +15,6 @@ From a terminal:
 
 1. cd <install-directory>/laragon/www/games-forum
 2. cp .env.examples .env
-3. php artisian key:generate
-4. composer install
+3. composer install
+4. php artisian key:generate
 5. start the laragon service, have fun. I think.
