@@ -34,6 +34,9 @@ Route::get('/welcome/{nombre}/{apellido?}',
            });
 
 
+// This moves the logic to the controller section.
+Route::get('/welcome_controller/{nombre}/{apellido}', 'PagesController@welcome');
+
 // This gets inserted after we call php artisian make:auth, aparently
 // what it does is make magic stuff for user registation.
 Auth::routes();
