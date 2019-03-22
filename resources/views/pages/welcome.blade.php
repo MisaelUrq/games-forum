@@ -10,6 +10,9 @@
             <h1>Game Forum</h1>
             <h2>The best place to talk about games.</h2>
         </div>
+
+
+        
         <div class="games_preview">
             <div class="game_preview">
                 <img alt="Image from a game" src=""/>

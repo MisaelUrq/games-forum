@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Examples from class 21/02/201
 /*
  * // Optional values have to be inside {} and hey have to be pass to the
@@ -35,7 +31,9 @@ Route::get('/', function () {
  *  */
 
 // This moves the logic to the controller section.
-Route::get('/welcome/', 'PagesController@welcome');
+Route::get('/', 'PagesController@welcome');
+
+Route::resource('/games', 'GamesController');
 
 // This gets inserted after we call php artisian make:auth, aparently
 // what it does is make magic stuff for user registation.
