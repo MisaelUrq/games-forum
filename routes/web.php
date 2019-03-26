@@ -31,7 +31,7 @@
  *  */
 
 // This moves the logic to the controller section.
-Route::get('/', 'PagesController@welcome');
+Route::get('/', 'GamesController@index');
 
 Route::resource('/games', 'GamesController');
 

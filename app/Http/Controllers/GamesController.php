@@ -44,7 +44,7 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'Store games not implemented' . dd($request->all());
     }
 
     /**
@@ -55,7 +55,7 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        //
+        return 'Show games not implemented';
     }
 
     /**
@@ -66,7 +66,7 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'Edit games not implemented';
     }
 
     /**
@@ -78,7 +78,7 @@ class GamesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return 'Update games not implemented';
     }
 
     /**
@@ -89,6 +89,6 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return 'Destroy games not implemented';
     }
 }
