@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Game;
-use App\WebAdmin;
 
-class GamesController extends Controller
+class WebAdmins extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $games = Game::All();
-        return view('games.index', compact('games'));
+        //
     }
 
     /**
@@ -26,14 +23,7 @@ class GamesController extends Controller
      */
     public function create()
     {
-        $current_user = \Auth::user();
-        $is_admin = null;
-
-        if ($current_user !== null) {
-            $is_admin = WebAdmin::where('user_id', $current_user->id)->first();
-
-        }
-        return view('games.create', compact('is_admin'));
+        //
     }
 
     /**

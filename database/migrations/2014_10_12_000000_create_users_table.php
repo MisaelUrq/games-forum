@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('last_online');
+            $table->timestamp('last_online')->useCurrent();
             $table->integer('age', false, true);
             $table->string('image');
             $table->timestamp('email_verified_at')->nullable();

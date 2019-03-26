@@ -19,7 +19,7 @@ class CreateGamesTable extends Migration
             $table->string('developer');
             $table->string('director');
             $table->string('publisher');
-            $table->timestamp('launch_date');
+            $table->date('launch_date');
             $table->integer('ranking');
             $table->string('image');
             $table->string('platforms');

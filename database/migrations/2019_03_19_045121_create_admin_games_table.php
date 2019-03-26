@@ -13,8 +13,10 @@ class CreateAdminGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_games', function (Blueprint $table) {
+        Schema::create('admins_games', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('game_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateAdminGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_games');
+        Schema::dropIfExists('admins_games');
     }
 }

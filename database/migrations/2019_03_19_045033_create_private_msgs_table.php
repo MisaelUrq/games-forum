@@ -15,6 +15,9 @@ class CreatePrivateMsgsTable extends Migration
     {
         Schema::create('private_msgs', function (Blueprint $table) {
             $table->increments('id');
+            $table->mediumText('content');
+            $table->integer('sender_id');
+            $table->integer('receiver_id');
             $table->timestamps();
         });
     }

@@ -15,6 +15,13 @@ class CreateGuidesTable extends Migration
     {
         Schema::create('guides', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
+            $table->string('description');
+            $table->longText('contents');
+            $table->integer('game_id');
+            $table->integer('user_id');
+            $table->timestamp('post_date');
+            $table->integer('likes');
             $table->timestamps();
         });
     }

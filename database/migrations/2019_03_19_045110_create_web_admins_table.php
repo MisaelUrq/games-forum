@@ -15,6 +15,7 @@ class CreateWebAdminsTable extends Migration
     {
         Schema::create('web_admins', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
