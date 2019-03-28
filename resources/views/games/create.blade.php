@@ -6,7 +6,6 @@
             <h2>The best place to talk about games.</h2>
         </div>
         @if($is_admin !== null && $is_admin->id > 0)
-
             <form method="POST" action="{{route('games.store')}}">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -14,31 +13,31 @@
                     <input class="form-control" name="title" type="text" value=""/>
                 </div>
                 <div class="form-group">
-                    <label for="title">Director: </label>
+                    <label for="director">Director: </label>
                     <input class="form-control" name="director" type="text" value=""/>
                 </div>
                 <div class="form-group">
-                    <label for="title">Developer: </label>
+                    <label for="developer">Developer: </label>
                     <input class="form-control" name="developer" type="text" value=""/>
                 </div>
                 <div class="form-group">
-                    <label for="title">Publisher: </label>
+                    <label for="publisher">Publisher: </label>
                     <input class="form-control" name="publisher" type="text" value=""/>
                 </div>
                 <div class="form-group">
-                    <label for="title">Release date: </label>
+                    <label for="release_date">Release date: </label>
                     <input class="form-control" name="release_date" type="date" value=""/>
                 </div>
                 <div class="form-group">
-                    <label for="title">Platforms: </label>
+                    <label>Platforms: </label>
                     <!--TODO(Misael): Platforms need to be from a checkbox! The values define somewhere else, maybe a controller? -->
                     <div class="form-group">
-                        <input name="platforms_test4" type="checkbox" for="test4">
-                        <label id="test4">Test 4</label>
+                        <input name="platform_test4" type="checkbox" for="platforms_test4">
+                        <label name="platforms_test4">Test 4</label>
                     </div>
                     <div class="form-group">
-                        <input name="platforms_test_one" type="checkbox" for="test one">
-                        <label id="test one">Test One</label>
+                        <input name="platform_testone" type="checkbox" for="platforms_testone">
+                        <label name="platforms_testone">Test One</label>
                     </div>
                 </div>
                 <button class="btn btn-primary">Submit</button>

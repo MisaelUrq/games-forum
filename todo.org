@@ -108,7 +108,7 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
 
 ** Controladores
 
-- [ ] Crear al menos un controlador tipo resource.
+- [X] Crear al menos un controlador tipo resource.
 - [ ] **Extra:** Crear un controlador tipo resource anidado.
 - [ ] Crear al menos un método personalizado dentro de un controlador.
 

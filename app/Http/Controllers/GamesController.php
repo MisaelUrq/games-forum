@@ -44,7 +44,43 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        return 'Store games not implemented' . dd($request->all());
+        $this->validate($request, [
+            'title' => 'required',
+            'director' => 'required',
+            'developer'=> 'required',
+            'publisher' => 'required',
+            'release_date' => 'required'
+        ]);
+
+        $platforms = ['platform_test4', 'platform_testone'];
+        $game_platforms = '';
+        $at_least_one_platform = false;
+
+        $index = 0;
+        foreach ($platforms as $platform) {
+            if (isset($request[$platform])) {
+                $at_least_one_platform = true;
+                $game_platforms = $game_platforms . $platform . '/';
+            }
+        }
+
+        if ($at_least_one_platform) {
+            $game = new Game;
+            $game->name = $request->input('title');
+            $game->developer = $request->input('developer');
+            $game->director = $request->input('director');
+            $game->publisher = $request->input('publisher');
+            $game->launch_date = $request->input('release_date');
+            $game->image = 'no image';
+            $game->platforms = $game_platforms;
+            $game->ranking = 0;
+            $game->save();
+
+            return redirect('games');
+        } else {
+            /* TODO(Misael): We should display error messages. */
+            return redirect('games/create');
+        }
     }
 
     /**
