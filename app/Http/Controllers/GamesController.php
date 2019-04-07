@@ -8,6 +8,39 @@ use App\WebAdmin;
 
 class GamesController extends Controller
 {
+    private function is_current_user_webadmin()
+    {
+        $current_user = \Auth::user();
+        if ($current_user !== null) {
+            $admin = WebAdmin::where('user_id', $current_user->id)->first();
+            if (isset($admin) && $admin->id > 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function get_platforms_from_request(Request $request) {
+        $platforms = ['platform_test4', 'platform_testone'];
+        $game_platforms = '';
+        $at_least_one_platform = false;
+
+        $index = 0;
+        foreach ($platforms as $platform) {
+            if (isset($request[$platform])) {
+                $at_least_one_platform = true;
+                $game_platforms = $game_platforms . $platform . '/';
+            }
+        }
+
+        if ($at_least_one_platform) {
+            return $game_platforms;
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +48,9 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $games = Game::All();
-        return view('games.index', compact('games'));
+        $games = Game::orderBy('name', 'asc')->get();
+        $is_user_admin = $this->is_current_user_webadmin();
+        return view('games.index', compact('games', 'is_user_admin'));
     }
 
     /**
@@ -26,14 +60,8 @@ class GamesController extends Controller
      */
     public function create()
     {
-        $current_user = \Auth::user();
-        $is_admin = null;
-
-        if ($current_user !== null) {
-            $is_admin = WebAdmin::where('user_id', $current_user->id)->first();
-
-        }
-        return view('games.create', compact('is_admin'));
+        $is_user_admin = $this->is_current_user_webadmin();
+        return view('games.create', compact('is_user_admin'));
     }
 
     /**
@@ -52,19 +80,9 @@ class GamesController extends Controller
             'release_date' => 'required'
         ]);
 
-        $platforms = ['platform_test4', 'platform_testone'];
-        $game_platforms = '';
-        $at_least_one_platform = false;
+        $game_platforms = $this->get_platforms_from_request($request);
 
-        $index = 0;
-        foreach ($platforms as $platform) {
-            if (isset($request[$platform])) {
-                $at_least_one_platform = true;
-                $game_platforms = $game_platforms . $platform . '/';
-            }
-        }
-
-        if ($at_least_one_platform) {
+        if (isset($game_platforms)) {
             $game = new Game;
             $game->name = $request->input('title');
             $game->developer = $request->input('developer');
@@ -79,7 +97,7 @@ class GamesController extends Controller
             return redirect('games');
         } else {
             /* TODO(Misael): We should display error messages. */
-            return redirect('games/create');
+            return redirect('games/create', compact('request'));
         }
     }
 
@@ -91,7 +109,8 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        return 'Show games not implemented';
+        $game = Game::find($id);
+        return view('games.show', compact('game'));
     }
 
     /**
@@ -102,7 +121,9 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        return 'Edit games not implemented';
+        $game = Game::find($id);
+        $is_user_admin = $this->is_current_user_webadmin();
+        return view('games.create', compact('game', 'is_user_admin'));
     }
 
     /**
@@ -114,6 +135,34 @@ class GamesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'director' => 'required',
+            'developer'=> 'required',
+            'publisher' => 'required',
+            'release_date' => 'required'
+        ]);
+
+        $game_platforms = $this->get_platforms_from_request($request);
+
+        if (isset($game_platforms)) {
+            $game = Game::find($id);
+
+            $game->name = $request->input('title');
+            $game->developer = $request->input('developer');
+            $game->director = $request->input('director');
+            $game->publisher = $request->input('publisher');
+            $game->launch_date = $request->input('release_date');
+            $game->image = 'no image';
+            $game->platforms = $game_platforms;
+            $game->ranking = 0;
+            $game->save();
+
+            return redirect('games');
+        } else {
+            return redirect('games/create', compact('request'));
+        }
+
         return 'Update games not implemented';
     }
 
@@ -125,6 +174,8 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        return 'Destroy games not implemented';
+        return $id;
+        Game::find($id)->delete();
+        return redirect('games/index');
     }
 }

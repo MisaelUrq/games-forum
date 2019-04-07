@@ -1,4 +1,5 @@
 
+
 * Databaes
 right now the databaes are
 ** Users
@@ -84,7 +85,7 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
   + [X] Mostrar nombre, nombre de usuario o correo del usuario.
   + [X] Mostrar opción para ingresar (login) o salir (logout) del sistema según corresponda.
   + [X] Mostrar menú de navegación.
-- [ ] Implementar Bootstrap u otro framework de css.
+- [X] Implementar Bootstrap u otro framework de css.
 - [ ] **Importante:** Mostrar mensajes al usuario cuando:
   + [ ] Exista un error de validación al completar un formulario.
   + [ ] Se haya completado una tarea, sea con éxito, con errores o si require información adicional. (Ej. Al crear, eliminar o editar).
@@ -110,7 +111,7 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
 
 - [X] Crear al menos un controlador tipo resource.
 - [ ] **Extra:** Crear un controlador tipo resource anidado.
-- [ ] Crear al menos un método personalizado dentro de un controlador.
+- [X] Crear al menos un método personalizado dentro de un controlador.
 
 ** API
 

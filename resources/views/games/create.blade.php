@@ -5,28 +5,33 @@
             <h1>Game Forum</h1>
             <h2>The best place to talk about games.</h2>
         </div>
-        @if($is_admin !== null && $is_admin->id > 0)
-            <form method="POST" action="{{route('games.store')}}">
+        @if($is_user_admin)
+            @if(isset($game))
+                <form action="{{ route('games.update', $game->id) }}" method="POST">
+                    <input name="_method" type="hidden" value="PATCH"/>
+            @else
+                <form method="POST" action="{{ route('games.store') }}">
+            @endif
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="title">Title: </label>
-                    <input class="form-control" name="title" type="text" value=""/>
+                    <input class="form-control" name="title" type="text" value="{{ isset($game) ? $game->name : '' }}"/>
                 </div>
                 <div class="form-group">
                     <label for="director">Director: </label>
-                    <input class="form-control" name="director" type="text" value=""/>
+                    <input class="form-control" name="director" type="text" value="{{ isset($game) ? $game->director : '' }}"/>
                 </div>
                 <div class="form-group">
                     <label for="developer">Developer: </label>
-                    <input class="form-control" name="developer" type="text" value=""/>
+                    <input class="form-control" name="developer" type="text" value="{{ isset($game) ? $game->developer : '' }}"/>
                 </div>
                 <div class="form-group">
                     <label for="publisher">Publisher: </label>
-                    <input class="form-control" name="publisher" type="text" value=""/>
+                    <input class="form-control" name="publisher" type="text" value="{{ isset($game) ? $game->publisher : '' }}"/>
                 </div>
                 <div class="form-group">
                     <label for="release_date">Release date: </label>
-                    <input class="form-control" name="release_date" type="date" value=""/>
+                    <input class="form-control" name="release_date" type="date" value="{{ isset($game) ? $game->launch_date : '' }}"/>
                 </div>
                 <div class="form-group">
                     <label>Platforms: </label>
