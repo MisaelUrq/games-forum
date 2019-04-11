@@ -1,15 +1,15 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| WebRoutes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+   |--------------------------------------------------------------------------
+   | WebRoutes
+   |--------------------------------------------------------------------------
+   |
+   | Here is where you can register web routes for your application. These
+   | routes are loaded by the RouteServiceProvider within a group which
+   | contains the "web" middleware group. Now create something great!
+   |
+ */
 
 // Examples from class 21/02/201
 /*
@@ -34,6 +34,13 @@
 Route::get('/', 'GamesController@index');
 
 Route::resource('/games', 'GamesController');
+
+Route::get('/games/{game}/{post}', 'GamesController@post');
+
+
+// TODO(Misael): So will this be better in the blog controller? Or
+// will it be better to inclued in the Games controller
+
 
 // This gets inserted after we call php artisian make:auth, aparently
 // what it does is make magic stuff for user registation.

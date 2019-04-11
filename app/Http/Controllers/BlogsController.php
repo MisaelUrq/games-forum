@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Blog;
 
 class BlogsController extends Controller
 {
@@ -11,10 +12,11 @@ class BlogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+/*     public function index()
     {
-        //
-    }
+//        $posts = Blog::where('game_id', $game->game_id); // orderBy('post_date', 'asc')->get();
+        return view('blog.index');
+    } */
 
     /**
      * Show the form for creating a new resource.

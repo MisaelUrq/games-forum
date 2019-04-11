@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->integer('game_id');
             $table->string('title');
             $table->string('description');
-            $table->timestamp('post_date');
+            $table->date('post_date');
             $table->timestamps();
         });
     }

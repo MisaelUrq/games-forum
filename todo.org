@@ -1,65 +1,4 @@
 
-
-* Databaes
-right now the databaes are
-** Users
-- id: int
-- name: string
-- email: string
-- int: age
-- image: asset
-- last_online: string
-- password
-- games: ---
-- guides: ---
-- blogs: ---
-- msg: ---
-** WebAdmin
-- id: int
-- user_id: int
-** AdminGames
-- id: int
-- user_id: int
-- games_id: int
-** Games
-- id: int
-- name: string
-- developer: string
-- launch date: string
-- ranking: string
-- image: asset
-- blogs: ---
-- guides: ---
-- platforms: string
-- *tips*: ---
-** Blogs
-- id: int
-- title: string
-- description: string
-- game_id: int
-- post_user: int
-- post_date: timestamp
-- likes: int
-** Guides
-- id: int
-- game_id: int
-- post_user: int
-- title: string
-- description: string
-- contents: string large!!
-** PrivateMsg
-- id: int
-- content: string
-- sender_user: int
-- reciver_user: int
-** PublicMsg
-- id: int
-- content: string
-- likes: int
-- sender_user: int
-- receiver_blog: int
-
-
 * Requisitos Proyecto Final
 
 Se espera un sistema web utilizando Laravel como framework de desarrollo.
@@ -134,3 +73,62 @@ Se deberá crear e implementar un cargador de archivos que permita:
 
 - [ ] Implementar la ejecución de una tarea recurrente de forma automática.
 - [ ] Implementar el uso de Jobs para la ejecución de múltiples tareas.
+
+* Databaes
+right now the databaes are
+** Users
+- id: int
+- name: string
+- email: string
+- int: age
+- image: asset
+- last_online: string
+- password
+- games: ---
+- guides: ---
+- blogs: ---
+- msg: ---
+** WebAdmin
+- id: int
+- user_id: int
+** AdminGames
+- id: int
+- user_id: int
+- games_id: int
+** Games
+- id: int
+- name: string
+- developer: string
+- launch date: string
+- ranking: string
+- image: asset
+- blogs: ---
+- guides: ---
+- platforms: string
+- *tips*: ---
+** Blogs
+- id: int
+- title: string
+- description: string
+- game_id: int
+- post_user: int
+- post_date: timestamp
+- likes: int
+** Guides
+- id: int
+- game_id: int
+- post_user: int
+- title: string
+- description: string
+- contents: string large!!
+** PrivateMsg
+- id: int
+- content: string
+- sender_user: int
+- reciver_user: int
+** PublicMsg
+- id: int
+- content: string
+- likes: int
+- sender_user: int
+- receiver_blog: int

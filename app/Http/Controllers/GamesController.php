@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Game;
 use App\WebAdmin;
+use App\Blog;
 
 class GamesController extends Controller
 {
+    // TODO(Misael): Maybe this function needs to be on a global controller, or a user controller.
     private function is_current_user_webadmin()
     {
         $current_user = \Auth::user();
@@ -79,9 +81,7 @@ class GamesController extends Controller
             'publisher' => 'required',
             'release_date' => 'required'
         ]);
-
         $game_platforms = $this->get_platforms_from_request($request);
-
         if (isset($game_platforms)) {
             $game = new Game;
             $game->name = $request->input('title');
@@ -110,7 +110,8 @@ class GamesController extends Controller
     public function show($id)
     {
         $game = Game::find($id);
-        return view('games.show', compact('game'));
+        $posts = Blog::where('game_id', $id)->get();
+        return view('games.show', compact('game', 'posts'));
     }
 
     /**
@@ -177,5 +178,11 @@ class GamesController extends Controller
         return $id;
         Game::find($id)->delete();
         return redirect('games/index');
+    }
+
+    public function post($game_id, $post_id) {
+        $game = Game::find($game_id);
+        $post = Blog::find($post_id);
+        return view('blog.show', compact('game', 'post'));
     }
 }
