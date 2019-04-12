@@ -7,12 +7,12 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
 
 - [X] Uso de migraciones para crear y modificar tablas.
 - [X] Implementar al menos un Seeder.
-- [ ] Generar datos de prueba para al menos una tabla.
+- [X] Generar datos de prueba para al menos una tabla.
 
 ** Autenticación, autorización y seguridad
 
 - [X] Realizar autenticación de usuarios mediante correo y contraseña.
-- [ ] Validar toda información que se reciba a partir de una formulario.
+- [X] Validar toda información que se reciba a partir de una formulario.
 - [ ] Crear e implementar un middleware.
 - [ ] Implementar gates y policies.
 - [ ] **Extra:** Passport / Socialite.

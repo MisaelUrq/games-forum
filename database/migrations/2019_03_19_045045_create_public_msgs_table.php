@@ -15,19 +15,17 @@ class CreatePublicMsgsTable extends Migration
     {
         Schema::create('public_msgs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unique();
             $table->mediumText('content');
             $table->integer('sender_id');
+            $table->char('type');
             $table->integer('receiver_id');
             $table->integer('likes');
+            $table->date('post_date');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('public_msgs');
