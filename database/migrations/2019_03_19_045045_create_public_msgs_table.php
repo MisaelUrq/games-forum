@@ -15,9 +15,10 @@ class CreatePublicMsgsTable extends Migration
     {
         Schema::create('public_msgs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('key')->unique();
             $table->mediumText('content');
             $table->integer('sender_id');
+            $table->integer('post_id');
             $table->char('type');
             $table->integer('receiver_id');
             $table->integer('likes');

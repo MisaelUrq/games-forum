@@ -11,5 +11,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GamesSeeder::class);
         $this->call(GamesAdminsSeeder::class);
         $this->call(BlogsSeeder::class);
+        $this->call(PublicMsgSeeder::class);
     }
 }

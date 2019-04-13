@@ -14,32 +14,37 @@ class PublicMsgSeeder extends Seeder
 
         // TODO(Misael): Find a better way to tag the public_msgs to
         // find them in a easy way.
+        $first_test = Blog::where('title', 'Will it be better that the original?')->first();
         PublicMsg::create([
             'content' => 'this is the first test message.',
-            'name' => 'test1',
+            'key' => 'test1',
             'sender_id' => User::where('name', 'game admin')->first()->id,
-            'receiver_id' => Blog::where('title', 'Will it be better that the original?')->first()->id,
-            'likes' => 0,
+            'post_id' => $first_test->id,
+            'receiver_id' => $first_test->id,
+            'likes' => 200,
             'type' => 'P',
             'post_date' => '2020-12-12'
         ]);
 
+        $second_test = Blog::where('title', 'Will it be better that the original?')->first();
         PublicMsg::create([
             'content' => 'this is the second test message.',
-            'name' => 'test2',
+            'key' => 'test2',
             'sender_id' => User::where('name', 'normal user')->first()->id,
-            'receiver_id' => Blog::where('title', 'Will it be better that the original?')->first()->id,
-            'likes' => 0,
+            'receiver_id' => $second_test->id,
+            'post_id' => $second_test->id,
+            'likes' => 100,
             'type' => 'P',
             'post_date' => '2020-12-12'
         ]);
 
         PublicMsg::create([
-            'content' => 'this is the first response message. To the first message',
-            'name' => 'respone1',
+            'content' => 'this is the first response message. To the second message',
+            'key' => 'respone1',
             'sender_id' => User::where('name', 'normal user')->first()->id,
-            'receiver_id' => PublicMsg::where('name', 'test2');,
-            'likes' => 0,
+            'receiver_id' => PublicMsg::where('key', 'test2')->first()->id,
+            'post_id' => $second_test->id,
+            'likes' => 300,
             'type' => 'M',
             'post_date' => '2020-12-12'
         ]);

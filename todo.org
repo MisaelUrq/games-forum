@@ -1,3 +1,5 @@
+* Project
+- [ ] Make controllers better right now in the blogs/show.blade.php there's pretty long line to get the user and comments from a replay msg, controllers methods could make this easier or shorter at least.
 
 * Requisitos Proyecto Final
 

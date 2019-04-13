@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Game;
 use App\WebAdmin;
 use App\Blog;
+use App\PublicMsg;
 
 class GamesController extends Controller
 {
@@ -183,6 +184,7 @@ class GamesController extends Controller
     public function post($game_id, $post_id) {
         $game = Game::find($game_id);
         $post = Blog::find($post_id);
-        return view('blog.show', compact('game', 'post'));
+        $msgs = PublicMsg::where('post_id', $post_id)->get();
+        return view('blog.show', compact('game', 'post', 'msgs'));
     }
 }
