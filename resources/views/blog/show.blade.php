@@ -43,13 +43,17 @@
     <div class="container mt-5">
         @if(\Auth::user() !== null)
             <ul class="list-group">
-                <li class="list-group-item list-group-item-info">Message</li>
-                <li class="list-group-item">
-                    <form action="POST" action="">
-                        <textarea class="form-control" id="" name="" rows="10"></textarea>
-                        <button class="btn btn-primary mt-3 offset-11">Reply</button>
-                    </form>
-                </li>
+                    <li class="list-group-item list-group-item-info">Message</li>
+                    <li class="list-group-item">
+                        <form method="POST" action="{{ route('publicmsg.store') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <textarea class="form-control" name="content" rows="10"></textarea>
+                                <input name="post_id" type="hidden" value="{{ $post->id }}"/>
+                            </div>
+                            <button class="btn btn-primary mt-3 offset-11">Reply</button>
+                        </form>
+                    </li>
             </ul>
         @else
             <h3>Login to comment.</h3>

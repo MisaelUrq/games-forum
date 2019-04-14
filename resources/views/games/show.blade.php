@@ -5,7 +5,6 @@
             <h1 class="offset-1">{{ $game->name }}</h1>
             <h3>By {{ $game->director }} and {{ $game->developer }}</h3>
         </div>
-
         <h2 class="offset-1">Guides</h2>
         <div class="list-group">
             <h3 class="list-group-item list-group-item-action">Guide One</h3>
