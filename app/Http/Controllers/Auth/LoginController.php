@@ -8,15 +8,15 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class LoginController extends Controller
 {
     /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+       |--------------------------------------------------------------------------
+       | Login Controller
+       |--------------------------------------------------------------------------
+       |
+       | This controller handles authenticating users for the application and
+       | redirecting them to your home screen. The controller uses a trait
+       | to conveniently provide its functionality to your applications.
+       |
+     */
 
     use AuthenticatesUsers;
 
@@ -36,4 +36,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function showLoginForm()
+    {
+        if(!session()->has('url.intended'))
+        {
+            session(['url.intended' => url()->previous()]);
+        }
+        return view('auth.login');
+    }
+
 }
