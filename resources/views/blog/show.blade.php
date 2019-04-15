@@ -61,7 +61,7 @@
                                 <textarea class="form-control" name="content" rows="3"></textarea>
                                 <input name="type_of_reply" type="hidden" value="M"/>
                                 <input name="post_id" type="hidden" value="{{ $post->id }}"/>
-                                <input name="receiver_id" type="hidden" value="{{ $msg->receiver_id }}"/>
+                                <input name="receiver_id" type="hidden" value="{{ $msg->id }}"/>
                                 <button class="btn btn-primary mt-1 offset-11">Submit</button>
                             </div>
                         </form>

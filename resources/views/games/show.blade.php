@@ -13,7 +13,7 @@
         <div class="list-group">
             @if(count($posts))
                 @foreach($posts as $post)
-                    <a href="/games/{{ $game->id }}/ {{ $post->id }}">
+                    <a href="{{ url('/games/'.$game->id.'/'.$post->id) }}">
                         <h3 class="list-group-item list-group-item-action">{{ $post->title }}</h3>
                     </a>
                 @endforeach

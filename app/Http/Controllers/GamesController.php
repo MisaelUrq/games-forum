@@ -164,8 +164,6 @@ class GamesController extends Controller
         } else {
             return redirect('games/create', compact('request'));
         }
-
-        return 'Update games not implemented';
     }
 
     /**
@@ -176,15 +174,21 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        return $id;
         Game::find($id)->delete();
-        return redirect('games/index');
+        return redirect('games');
     }
 
     public function post($game_id, $post_id) {
         $game = Game::find($game_id);
         $post = Blog::find($post_id);
+
         $msgs = PublicMsg::where('post_id', $post_id)->get();
-        return view('blog.show', compact('game', 'post', 'msgs'));
+
+        if ($game !== null && $post !== null) {
+            return view('blog.show', compact('game', 'post', 'msgs'));
+        }
+        else {
+            return redirect('games');
+        }
     }
 }

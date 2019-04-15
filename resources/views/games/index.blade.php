@@ -23,10 +23,10 @@
                     <tbody>
                         @foreach($games as $game)
                             <tr>
-                                <td><a href="/games/{{$game->id}}"><h3>{{$game->name}}</h3></a></td>
-                                <td><a href="/games/{{$game->id}}"><h4>{{$game->director}}</h4></a></td>
-                                <td><a href="/games/{{$game->id}}"><h4>{{$game->developer}}</h4></a></td>
-                                <td><a href="/games/{{$game->id}}"><h4>{{$game->publisher}}</h4></a></td>
+                                <td><a href="{{ url('/games/'.$game->id) }}"><h3>{{$game->name}}</h3></a></td>
+                                <td><a href="{{ url('/games/'.$game->id) }}"><h4>{{$game->director}}</h4></a></td>
+                                <td><a href="{{ url('/games/'.$game->id) }}"><h4>{{$game->developer}}</h4></a></td>
+                                <td><a href="{{ url('/games/'.$game->id) }}"><h4>{{$game->publisher}}</h4></a></td>
                                 @if($is_user_admin)
                                     <td>
                                         <button type="button" class="btn btn-warning"><a href="{{ route('games.edit', $game->id) }}">Edit</a></button>
