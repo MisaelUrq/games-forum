@@ -7,6 +7,7 @@ use App\Game;
 use App\WebAdmin;
 use App\Blog;
 use App\PublicMsg;
+use App\AdminGame;
 
 class GamesController extends Controller
 {
@@ -21,6 +22,20 @@ class GamesController extends Controller
             }
         }
 
+        return false;
+    }
+
+    private function is_current_user_webadmin_or_gameadmin($game_id)
+    {
+        $current_user = \Auth::user();
+        if ($current_user !== null) {
+            $admin = AdminGame::where('user_id', $current_user->id)->first();
+            if (isset($admin) && $admin->id > 0 && $admin->game_id == $game_id) {
+                return true;
+            } else {
+                return $this->is_current_user_webadmin();
+            }
+        }
         return false;
     }
 
@@ -181,11 +196,11 @@ class GamesController extends Controller
     public function post($game_id, $post_id) {
         $game = Game::find($game_id);
         $post = Blog::find($post_id);
-
         $msgs = PublicMsg::where('post_id', $post_id)->get();
+        $is_user_admin = $this->is_current_user_webadmin_or_gameadmin($game_id);
 
         if ($game !== null && $post !== null) {
-            return view('blog.show', compact('game', 'post', 'msgs'));
+            return view('blog.show', compact('game', 'post', 'msgs', 'is_user_admin'));
         }
         else {
             return redirect('games');

@@ -34,9 +34,18 @@
             <ul class="list-group m-3">
                 <li class="list-group-item list-group-item-secondary">
                     {{ App\User::where('id', $msg->sender_id)->first()->name }}
-                    <small class="offset-10">
-                        {{ $msg->post_date }}
-                    </small>
+                    <div class="offset-10 row">
+                        <small>
+                            {{ $msg->post_date }}
+                        </small>
+                        @if($is_user_admin)
+                            <form class="ml-4" action="{{ route('publicmsg.destroy', $msg->id) }}" method="POST">
+                                <input name="_method" type="hidden" value="DELETE"/>
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        @endif
+                    </div>
                 </li>
                 <li class="list-group-item">
                     @if($msg->type === 'M')

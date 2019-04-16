@@ -43,4 +43,11 @@ class PublicMsgController extends Controller
         }
         return redirect('games/' . Blog::where('id', $msg->post_id)->first()->game_id . '/' . $msg->post_id);
     }
+
+    public function destroy($id)
+    {
+        PublicMsg::find($id)->delete();
+        return redirect(url()->previous());
+    }
+
 }
