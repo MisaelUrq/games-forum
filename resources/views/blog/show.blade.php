@@ -33,9 +33,9 @@
         <div class="container">
             <ul class="list-group m-3">
                 <li class="list-group-item list-group-item-secondary">
-                    {{ App\User::where('id', $msg->sender_id)->first()->name }}
-                    <div class="offset-10 row">
-                        <small>
+                    <div class="row">
+                        <p class="m-2">{{ App\User::where('id', $msg->sender_id)->first()->name }}</p>
+                        <small class="offset-9">
                             {{ $msg->post_date }}
                         </small>
                         @if($is_user_admin)
@@ -53,9 +53,9 @@
                             <li class="list-group-item ">{{ App\PublicMsg::where('id', $msg->receiver_id)->first()->content }}
                                 <div class="offset-9">
                                     <small>
-                                        {{ App\User::where('id',
-                                                           App\PublicMsg::where('id',
-                                                                                $msg->receiver_id)->first()->sender_id)->first()->name }} -
+                                        From: {{ App\User::where('id',
+                                                                 App\PublicMsg::where('id',
+                                                                                      $msg->receiver_id)->first()->sender_id)->first()->name }} on
                                         {{ App\PublicMsg::where('id', $msg->receiver_id)->first()->post_date }}
                                     </small>
                                 </div>

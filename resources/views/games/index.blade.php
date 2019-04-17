@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="container">
-            <h1 class="offset-1">Game Forum</h1>
+            <h1 class="offset-1 card-title">Game Forum</h1>
             <h3>The best place to talk about games.</h3>
         </div>
         @if(count($games) > 0)
@@ -28,12 +28,12 @@
                                 <td><a href="{{ url('/games/'.$game->id) }}"><h4>{{$game->developer}}</h4></a></td>
                                 <td><a href="{{ url('/games/'.$game->id) }}"><h4>{{$game->publisher}}</h4></a></td>
                                 @if($is_user_admin)
-                                    <td>
-                                        <button type="button" class="btn btn-warning"><a href="{{ route('games.edit', $game->id) }}">Edit</a></button>
+                                    <td class="row">
+                                        <button type="button" class="btn btn-warning m-1"><a href="{{ route('games.edit', $game->id) }}">Edit</a></button>
                                         <form action="{{ route('games.destroy', $game->id) }}" method="POST">
                                             <input name="_method" type="hidden" value="DELETE"/>
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger m-1">Delete</button>
                                         </form>
                                     </td>
                                 @endif
