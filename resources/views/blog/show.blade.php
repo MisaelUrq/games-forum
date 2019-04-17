@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <script>
-     function InsertTextArea(key) {
+     function ToggleTextArea(key) {
          var form_block = document.getElementById("reply_to_user-"+key);
          if (form_block.style.display === "none") {
              form_block.style.display = "block";
@@ -9,7 +9,6 @@
              var button = document.getElementById("button_reply"+key);
              button.value = "Cancel";
              button.style.background = "red";
-
          } else {
              form_block.style.display = "none";
              var button = document.getElementById("button_reply"+key);
@@ -50,13 +49,11 @@
                 <li class="list-group-item">
                     @if($msg->type === 'M')
                         <ul class="list-group m-2">
-                            <li class="list-group-item ">{{ App\PublicMsg::where('id', $msg->receiver_id)->first()->content }}
+                            <li class="list-group-item ">{{ App\PublicMsg::get_receiver_msg_from_response_msg($msg)->content }}
                                 <div class="offset-9">
                                     <small>
-                                        From: {{ App\User::where('id',
-                                                                 App\PublicMsg::where('id',
-                                                                                      $msg->receiver_id)->first()->sender_id)->first()->name }} on
-                                        {{ App\PublicMsg::where('id', $msg->receiver_id)->first()->post_date }}
+                                        From: {{ App\PublicMsg::get_receiver_user_from_response_msg($msg)->name }} on
+                                        {{ App\PublicMsg::get_receiver_msg_from_response_msg($msg)->post_date }}
                                     </small>
                                 </div>
                             </li>
@@ -74,7 +71,7 @@
                                 <button class="btn btn-primary mt-1 offset-11">Submit</button>
                             </div>
                         </form>
-                        <input id="{{ 'button_reply' . $msg->key }}" class="btn btn-primary offset-11" name="replyClickMe" type="button" value="Reply" onClick="{{'InsertTextArea("' . $msg->key . '");'}}" />
+                        <input id="{{ 'button_reply' . $msg->key }}" class="btn btn-primary offset-11" name="replyClickMe" type="button" value="Reply" onClick="{{'ToggleTextArea("' . $msg->key . '");'}}" />
                     @endif
                 </li>
             </ul>

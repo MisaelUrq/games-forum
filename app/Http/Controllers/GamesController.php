@@ -15,7 +15,6 @@ class GamesController extends Controller
         $game_platforms = '';
         $at_least_one_platform = false;
 
-        $index = 0;
         foreach ($platforms as $platform) {
             if (isset($request[$platform])) {
                 $at_least_one_platform = true;
@@ -76,7 +75,11 @@ class GamesController extends Controller
     {
         $game = Game::find($id);
         $posts = Blog::where('game_id', $id)->get();
-        return view('games.show', compact('game', 'posts'));
+        if (isset($game) && $game->id) {
+            return view('games.show', compact('game', 'posts'));
+        } else {
+            return redirect('games');
+        }
     }
 
     public function edit($id)
