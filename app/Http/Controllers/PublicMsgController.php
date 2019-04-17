@@ -49,5 +49,4 @@ class PublicMsgController extends Controller
         PublicMsg::find($id)->delete();
         return redirect(url()->previous());
     }
-
 }

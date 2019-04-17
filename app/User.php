@@ -6,6 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\WebAdmin;
+use App\AdminGame;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -36,4 +39,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function is_current_user_webadmin()
+    {
+        $current_user = \Auth::user();
+        if ($current_user !== null) {
+            $admin = WebAdmin::where('user_id', $current_user->id)->first();
+            if (isset($admin) && $admin->id > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static function is_current_user_webadmin_or_gameadmin($game_id)
+    {
+        $current_user = \Auth::user();
+        if ($current_user !== null) {
+            $admin = AdminGame::where('user_id', $current_user->id)->first();
+            if (isset($admin) && $admin->id > 0 && $admin->game_id == $game_id) {
+                return true;
+            } else {
+                return User::is_current_user_webadmin();
+            }
+        }
+        return false;
+    }
 }
