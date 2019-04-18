@@ -6,6 +6,7 @@
         @if(\Auth::user() !== null)
             <form method="POST" action="{{ route('posts.store') }}">
                 {{ csrf_field() }}
+                <input class="form-group" type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <div class="form-group">
                     <label for="post_title">Title: </label>
                     <input class="form-control" name="post_title" type="text" value=""/>

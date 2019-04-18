@@ -11,7 +11,14 @@
         <div class="m-3 list-group">
             <h3 class="list-group-item list-group-item-action text-wrap">Guide One</h3>
         </div>
-        <h2 class="m-4">Posts</h2>
+        <div class="m-4 row">
+            <h2>Posts</h2>
+            @if(\Auth::user() !== null)
+                <button type="button" class="btn btn-primary offset-9">
+                    <a style="color: white;" href="{{ route('posts.create', ['game_id' => $game->id]) }}">New post</a>
+                </button>
+            @endif
+        </div>
         <div class="m-3 list-group">
             @if(count($posts))
                 @foreach($posts as $post)
