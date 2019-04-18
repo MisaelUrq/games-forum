@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="container">
-            <h1 class="offset-1 card-title">Game Forum</h1>
-            <h3>The best place to talk about games.</h3>
-        </div>
+        @component('components.logo')
+        @endcomponent
         @if(count($games) > 0)
             <!--TODO(Misael): Maybe tables are a bad choice? Try diferent layouts. To more detail see Bootstrap: Grid -->
             <div class="row">

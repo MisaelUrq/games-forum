@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="container">
-            <h1>Game Forum</h1>
-            <h2>The best place to talk about games.</h2>
-        </div>
+        @component('components.logo')
+        @endcomponent
         @if($is_user_admin)
             @if(isset($game))
                 <form action="{{ route('games.update', $game->id) }}" method="POST">
