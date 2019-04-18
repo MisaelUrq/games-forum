@@ -22,9 +22,28 @@
         <div class="m-3 list-group">
             @if(count($posts))
                 @foreach($posts as $post)
-                    <a class="mb-1" href="{{ url('/games/'.$game->id.'/'.$post->id) }}">
-                        <h3 class="list-group-item list-group-item-action text-wrap">{{ $post->title }}</h3>
-                    </a>
+                    <div class="list-group-item-action list-group-item m-1">
+                        <table class="container">
+                            <th class="row">
+                                <div class="col-10">
+                                    <a href="{{ url('/games/'.$game->id.'/'.$post->id) }}">
+                                        <h3 class="text-wrap">
+                                            {{ $post->title }}
+                                        </h3>
+                                    </a>
+                                </div>
+                                @if(App\User::is_current_user_webadmin_or_gameadmin($game->id))
+                                    <div class="col">
+                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                            <input name="_method" type="hidden" value="DELETE"/>
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            </th>
+                        </table>
+                    </div>
                 @endforeach
             @endif
         </div>
