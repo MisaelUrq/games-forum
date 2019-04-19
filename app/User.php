@@ -69,4 +69,12 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany('App\Blog', 'user_id', 'id');
     }
+
+    public function games_admin() {
+        return $this->hasMany('App\AdminGame', 'user_id', 'id');
+    }
+
+    public function web_admin() {
+        return $this->hasOne('App\WebAdmin', 'user_id', 'id');
+    }
 }

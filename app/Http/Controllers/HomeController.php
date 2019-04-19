@@ -25,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = User::find(\Auth::user()->id)->posts()->get();
-        return view('home', compact('posts'));
+        $user = User::find(\Auth::user()->id);
+        $posts = $user->posts()->get();
+        $admin_of_games = $user->games_admin()->get();
+        return view('home', compact('posts', 'admin_of_games'));
     }
 }
