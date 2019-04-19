@@ -19,12 +19,15 @@
     </script>
     <div class="container">
         <div class="container">
-            <h1 class="offset-1">{{ $game->name }}</h1>
+            <a class="row" href="{{ url('games/'.$game->id) }}">
+                <h1 class="offset-1">{{ $game->name }}</h1>
+                <!-- <img class="offset-1" alt="no image" src=""/> -->
+            </a>
         </div>
     </div>
     <div class="container">
         <ul class="list-group">
-            <li class="list-group-item list-group-item-primary">{{ $post->title }}</li>
+            <li class="list-group-item list-group-item-primary">{{ $post->title }} <small class="offset-7">By: {{ App\User::find($post->user_id)->name }} on {{ $post->post_date }}</small></li>
             <li class="list-group-item">{{ $post->description }}</li>
         </ul>
     </div>

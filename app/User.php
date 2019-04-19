@@ -65,4 +65,8 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function posts() {
+        return $this->hasMany('App\Blog', 'user_id', 'id');
+    }
 }

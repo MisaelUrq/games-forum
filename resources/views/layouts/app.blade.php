@@ -74,6 +74,7 @@
                                     @if(App\WebAdmin::where('user_id', Auth::user()->id)->first() !== null)
                                         <a class="dropdown-item" href="{{ route('games.create') }}">{{ __('Crategame') }}</a>
                                     @endif
+                                    <a class="dropdown-item" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
