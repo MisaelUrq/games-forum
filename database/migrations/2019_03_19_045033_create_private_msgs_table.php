@@ -18,6 +18,7 @@ class CreatePrivateMsgsTable extends Migration
             $table->mediumText('content');
             $table->integer('sender_id');
             $table->integer('receiver_id');
+            $table->datetime('date');
             $table->timestamps();
         });
     }
