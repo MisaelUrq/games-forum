@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\WebAdmin;
 use App\AdminGame;
@@ -12,6 +13,7 @@ use App\AdminGame;
 class User extends Authenticatable
 {
     use Notifiable;
+    // use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -70,6 +72,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Blog', 'user_id', 'id');
     }
 
+    public function guides() {
+        return $this->hasMany('App\Guides', 'user_id', 'id');
+    }
+
+    public function reviews() {
+        return $this->hasMany('App\Review', 'user_id', 'id');
+    }
+
     public function games_admin() {
         return $this->hasMany('App\AdminGame', 'user_id', 'id');
     }
@@ -77,4 +87,14 @@ class User extends Authenticatable
     public function web_admin() {
         return $this->hasOne('App\WebAdmin', 'user_id', 'id');
     }
+
+    public function private_messages_send() {
+        return $this->hasMany('App\PrivateMsg', 'sender_id', 'id');
+    }
+
+    public function private_messages_received() {
+        return $this->hasMany('App\PrivateMsg', 'receiver_id', 'id');
+    }
+
+
 }

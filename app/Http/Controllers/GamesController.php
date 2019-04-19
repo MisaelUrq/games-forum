@@ -74,7 +74,7 @@ class GamesController extends Controller
     public function show($id)
     {
         $game = Game::find($id);
-        $posts = Blog::where('game_id', $id)->get();
+        $posts = $game->posts()->get(); // Blog::where('game_id', $id)->get();
         if (isset($game) && $game->id) {
             return view('games.show', compact('game', 'posts'));
         } else {
@@ -128,7 +128,7 @@ class GamesController extends Controller
     public function post($game_id, $post_id) {
         $game = Game::find($game_id);
         $post = Blog::find($post_id);
-        $msgs = PublicMsg::where('post_id', $post_id)->get();
+        $msgs = $post->msgs()->get();// PublicMsg::where('post_id', $post_id)->get();
         $is_user_admin = User::is_current_user_webadmin_or_gameadmin($game_id);
 
         if ($game !== null && $post !== null) {

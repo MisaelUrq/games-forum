@@ -27,7 +27,9 @@ class HomeController extends Controller
     {
         $user = User::find(\Auth::user()->id);
         $posts = $user->posts()->get();
+        $guides = $user->guides()->get();
         $admin_of_games = $user->games_admin()->get();
-        return view('home', compact('posts', 'admin_of_games'));
+        $reviews = $user->reviews()->get();
+        return view('home', compact('posts', 'guides', 'reviews', 'admin_of_games'));
     }
 }

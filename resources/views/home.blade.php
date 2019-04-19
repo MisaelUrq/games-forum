@@ -44,21 +44,35 @@
                             <div class="card m-1">
                                 <div class="card-header bg-info">Guides</div>
                                 <div class="card-body">
-
-                                    <ul class="list-group">
+                                    @if(count($guides) > 0)
+                                        @foreach($guides as $guide)
+                                            <a href="{{ url('guides/'.$guide->game_id.'/'.$guide->id) }}">
+                                                <li class="list-group-item list-group-item-light">
+                                                    <p>{{ $guide->title }}</p>
+                                                    <small class="d-flex justify-content-end">{{ $guide->post_date }}</small>
+                                                </li>
+                                            </a>
+                                        @endforeach
+                                    @else
                                         <li class="list-group-item">None</li>
-                                    </ul>
-
+                                    @endif
                                 </div>
                             </div>
                             <div class="card m-1">
                                 <div class="card-header bg-info">Reviews</div>
                                 <div class="card-body">
-
-                                    <ul class="list-group">
+                                    @if(count($reviews) > 0)
+                                        @foreach($reviews as $review)
+                                            <a href="{{ url('reviews/'.$review->game_id.'/'.$review->id) }}">
+                                                <li class="list-group-item list-group-item-light">
+                                                    <p>{{ $review->title }}</p>
+                                                    <small class="d-flex justify-content-end">{{ $review->post_date }}</small>
+                                                </li>
+                                            </a>
+                                        @endforeach
+                                    @else
                                         <li class="list-group-item">None</li>
-                                    </ul>
-
+                                    @endif
                                 </div>
                             </div>
                             @if(count($admin_of_games) > 0)
