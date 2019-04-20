@@ -1,6 +1,3 @@
-* Project
-- [ ] Make error messages.
-
 * Requisitos Proyecto Final
 
 Se espera un sistema web utilizando Laravel como framework de desarrollo.
@@ -30,7 +27,7 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
 - [-] **Importante:** Mostrar mensajes al usuario cuando:
   + [X] Exista un error de validación al completar un formulario.
   + [ ] Se haya completado una tarea, sea con éxito, con errores o si require información adicional. (Ej. Al crear, eliminar o editar).
-  + [ ] Existan listados vacíos.
+  + [X] Existan listados vacíos.
 - [X] Cuando exista un error al validar un formulario o se esté editando información de un recurso existente, el formulario deberá mostrar la información capturada o a editar.
 - [X] Los enlaces o inclusión de recursos locales (css, js, etc) deberán generarse utilizando los helpers adecuados. (Ej. action, route, asset).
 

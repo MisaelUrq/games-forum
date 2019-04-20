@@ -52,13 +52,18 @@
                 <li class="list-group-item">
                     @if($msg->type === 'M')
                         <ul class="list-group m-2">
-                            <li class="list-group-item ">{{ App\PublicMsg::get_receiver_msg_from_response_msg($msg)->content }}
-                                <div class="offset-9">
-                                    <small>
-                                        From: {{ App\PublicMsg::get_receiver_user_from_response_msg($msg)->name }} on
-                                        {{ App\PublicMsg::get_receiver_msg_from_response_msg($msg)->post_date }}
-                                    </small>
-                                </div>
+                            <li class="list-group-item ">
+                                @if(App\Publicmsg::get_receiver_msg_from_response_msg($msg) !== null)
+                                    {{ App\PublicMsg::get_receiver_msg_from_response_msg($msg)->content }}
+                                    <div class="offset-9">
+                                        <small>
+                                            From: {{ App\PublicMsg::get_receiver_user_from_response_msg($msg)->name }} on
+                                            {{ App\PublicMsg::get_receiver_msg_from_response_msg($msg)->post_date }}
+                                        </small>
+                                    </div>
+                                @else
+                                    This message was deleted.
+                                @endif
                             </li>
                         </ul>
                     @endif
