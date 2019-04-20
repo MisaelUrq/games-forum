@@ -75,8 +75,10 @@ class GamesController extends Controller
     {
         $game = Game::find($id);
         $posts = $game->posts()->get(); // Blog::where('game_id', $id)->get();
+        g$guides = $game->guides()->get();
+
         if (isset($game) && $game->id) {
-            return view('games.show', compact('game', 'posts'));
+            return view('games.show', compact('game', 'posts', 'guides'));
         } else {
             return redirect('games');
         }

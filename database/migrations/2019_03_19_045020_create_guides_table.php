@@ -20,7 +20,7 @@ class CreateGuidesTable extends Migration
             $table->longText('contents');
             $table->integer('game_id');
             $table->integer('user_id');
-            $table->timestamp('post_date');
+            $table->date('post_date');
             $table->integer('likes');
             $table->timestamps();
         });

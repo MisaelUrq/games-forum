@@ -34,9 +34,9 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
 ** Eloquent (Modelos, consultas)
 
 - [-] Definir una relación de cada uno de los siguientes tipos y sus inversas dentro de los modelos:
-  + [X] "uno a muchos" (1:n)
-  + [X] "muchos a muchos" (n:n)
-  + [ ] polimórfica o polimórfica muchos a muchos.
+  - [X] "uno a muchos" (1:n)
+  - [X] "muchos a muchos" (n:n)
+  - [ ] polimórfica o polimórfica muchos a muchos.
 - [ ] Utilizar "Eager Loading" al consultar múltiples registros con n relaciones.
 - [ ] Utilizar al menos en una consulta "Constraining Eager Load".
 - [ ] Declarar "fillable" o "guarded" en al menos un modelo.

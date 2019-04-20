@@ -12,5 +12,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GamesAdminsSeeder::class);
         $this->call(BlogsSeeder::class);
         $this->call(PublicMsgSeeder::class);
+        $this->call(ReviewSeeder::class);
+        $this->call(GuideSeeder::class);
     }
 }
