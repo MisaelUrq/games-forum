@@ -85,6 +85,7 @@
                                         </div>
                                         @if(App\User::is_current_user_webadmin_or_gameadmin($game->id))
                                             <div class="col">
+                                                <button type="button" class="btn btn-warning m-1"><a href="{{ route('guides.edit', $guide->id) }}">Edit</a></button>
                                                 <form action="{{ route('guides.destroy', $guide->id) }}"  method="POST">
                                                     <input name="_method" type="hidden" value="DELETE"/>
                                                     @csrf

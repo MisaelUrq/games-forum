@@ -20,7 +20,7 @@
         </div>
         <div class="form-group" id="message-div">
             <label for="guide-contents">Contentsgam: </label>
-            <textarea class="form-control" name="guide-contents" rows="10" value="{{ isset($guide) ? $guide->contents : '' }}"></textarea>
+            <textarea class="form-control" name="guide-contents" rows="10">{{ isset($guide) ? $guide->contents : '' }}</textarea>
         </div>
         <input name="game_id" type="hidden" value="{{ $game->id }}"/>
         <button class="btn btn-primary">Submit</button>
