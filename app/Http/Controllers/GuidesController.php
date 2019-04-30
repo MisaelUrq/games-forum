@@ -31,4 +31,28 @@ class GuidesController extends Controller
         Guides::find($guide_id)->delete();
         return redirect(url()->previous());
     }
+
+    public function update(Request $request, $id) {
+
+    }
+
+    public function store(Request $request) {
+        $this->validate($request, [
+            'guide-title' => 'required',
+            'guide-description' => 'required',
+            'guide-contents' => 'required',
+            'game_id' => 'required'
+        ]);
+
+        $guide = new Guides;
+        $guide->title = $request->input('guide-title');
+        $guide->description = $request->input('guide-description');
+        $guide->contents = $request->input('guide-contents');
+        $guide->game_id = $request->input('game_id');
+        $guide->user_id = \Auth::user()->id;
+        $guide->post_date = date('y-m-d');
+        $guide->likes = 0;
+        $guide->save();
+        return redirect(url('/games/'.$guide->game_id));
+    }
 }
