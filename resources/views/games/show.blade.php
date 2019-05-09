@@ -111,9 +111,57 @@
                         </div>
                     @endif
                 </div>
-                <h2 class="m-2">Reviews</h2>
+                <div class="m-1 row">
+                    <h2 class="col">Reviews </h2>
+                    @if(\Auth::user() !== null)
+                        <button type="button" class="col-3 btn btn-primary">
+                            <a style="color: white;" href="{{ route('reviews.create', ['game_id' => $game->id]) }}">New reviews</a>
+                        </button>
+                    @endif
+                </div>
                 <div class="list-group m-1">
-                    <h3 class="list-group-item list-group-item-action text-wrap">Review One</h3>
+                    @if(count($reviews) > 0)
+                        @foreach($reviews as $review)
+                            <div class="list-group-item-action list-group-item m-1">
+                                <table class="container">
+                                    <th class="row">
+                                        <div class="col-8">
+                                            <a href="{{ route('reviews.show',
+                                                              ['nothing' => 0,
+                                                               'review_id' => $review->id,
+                                                               'game_id' => $game->id]) }}">
+                                                <h3 class="text-wrap">
+                                                    {{ $review->title }}
+                                                </h3>
+                                            </a>
+                                        </div>
+                                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id))
+                                            <div class="col">
+                                                <button type="button" class="btn btn-warning m-1"><a href="{{ route('reviews.edit', $review->id) }}">Edit</a></button>
+                                                <form action="{{ route('reviews.destroy', $review->id) }}"  method="POST">
+                                                    <input name="_method" type="hidden" value="DELETE"/>
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </th>
+                                </table>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="list-group-item-action list-group-item m-1">
+                            <table class="container">
+                                <th class="row">
+                                    <div class="col-10">
+                                        <h3 class="text-wrap">
+                                            No reviews for this game.
+                                        </h3>
+                                    </div>
+                                </th>
+                            </table>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

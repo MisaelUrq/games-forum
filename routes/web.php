@@ -18,6 +18,7 @@ Route::resource('/games', 'GamesController');
 Route::resource('/publicmsg', 'PublicMsgController');
 Route::resource('/posts', 'BlogsController');
 Route::resource('/guides', 'GuidesController');
+Route::resource('/reviews', 'ReviewsController');
 
 
 Route::get('/games/{game}/{post}', 'GamesController@post');

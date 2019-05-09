@@ -73,7 +73,7 @@ Se deberá crear e implementar un cargador de archivos que permita:
 - [ ] Implementar la ejecución de una tarea recurrente de forma automática.
 - [ ] Implementar el uso de Jobs para la ejecución de múltiples tareas.
 
-* Databaes
+* Databases
 right now the databaes are
 ** Users
 - id: int

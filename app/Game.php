@@ -13,4 +13,9 @@ class Game extends Model
     public function posts() {
         return $this->hasMany('App\Blog', 'game_id', 'id');
     }
+
+    public function reviews() {
+        return $this->hasMany('App\Review', 'game_id', 'id');
+    }
+
 }
