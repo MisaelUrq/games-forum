@@ -12,8 +12,6 @@ class PublicMsgSeeder extends Seeder
     {
         DB::table('public_msgs')->delete();
 
-        // TODO(Misael): Find a better way to tag the public_msgs to
-        // find them in a easy way.
         $first_test = Blog::where('title', 'Will it be better that the original?')->first();
         PublicMsg::create([
             'content' => 'this is the first test message.',
