@@ -2,9 +2,14 @@
 @section('content')
     <div class="container">
         <div class="card m-1">
-            <div class="card-body">
-                <h1 class="card-title ml-3">{{ $game->name }}</h1>
-                <h3 class="card-subtitle text-muted">By {{ $game->director }} and {{ $game->developer }}</h3>
+            <div class="card-body row">
+                <div class="col-8 m-2">
+                    <h1 class="card-title ml-3">{{ $game->name }}</h1>
+                    <h3 class="card-subtitle text-muted">By {{ $game->director }} and {{ $game->developer }}</h3>
+                </div>
+                <div class="col">
+                    <img class="card-img" style="height:16rem;" alt="Cover for the game" src="{{ $game->get_image_path() }}" />
+                </div>
             </div>
         </div>
         <div class="container row">

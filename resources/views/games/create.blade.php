@@ -5,10 +5,10 @@
         @endcomponent
         @if($is_user_admin)
             @if(isset($game))
-                <form action="{{ route('games.update', $game->id) }}" method="POST">
+                <form action="{{ route('games.update', $game->id) }}" method="POST" enctype="multipart/form-data">
                     <input name="_method" type="hidden" value="PATCH"/>
             @else
-                <form method="POST" action="{{ route('games.store') }}">
+                <form method="POST" action="{{ route('games.store') }}" enctype="multipart/form-data">
             @endif
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -42,6 +42,10 @@
                         <input name="platform_testone" type="checkbox" for="platforms_testone">
                         <label name="platforms_testone">Test One</label>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="game_img">Cover Image</label>
+                    <input class="form-control-file" id="game_img" name="game_img" type="file" />
                 </div>
                 <button class="btn btn-primary">Submit</button>
             </form>

@@ -49,7 +49,8 @@ class GamesController extends Controller
             'director' => 'required',
             'developer'=> 'required',
             'publisher' => 'required',
-            'release_date' => 'required'
+            'release_date' => 'required',
+            'game_img' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
         $game_platforms = $this->get_platforms_from_request($request);
         if (isset($game_platforms)) {
@@ -59,14 +60,13 @@ class GamesController extends Controller
             $game->director = $request->input('director');
             $game->publisher = $request->input('publisher');
             $game->launch_date = $request->input('release_date');
-            $game->image = 'no image';
+            $game->image = explode('games_covers', $request->file('game_img')->storePublicly('public/games_covers'))[1];
             $game->platforms = $game_platforms;
             $game->ranking = 0;
             $game->save();
 
             return redirect('games');
         } else {
-            /* TODO(Misael): We should display error messages. */
             return redirect('games/create', compact('request'));
         }
     }
