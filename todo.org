@@ -42,7 +42,7 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
 - [ ] Declarar "fillable" o "guarded" en al menos un modelo.
 - [ ] Almacenar información adicional en al menos una tabla pivote.
 - [X] Implementar "time stamps" en al menos un modelo.
-- [ ] Implementar "Soft Delete" en al menos un modelo.
+- [X] Implementar "Soft Delete" en al menos un modelo.
 - [ ] Crear al menos un "accessor" y un "muttator" en un modelo.
 
 ** Controladores
@@ -59,14 +59,14 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
 
 Se deberá crear e implementar un cargador de archivos que permita:
 
-- [ ] Cargar uno o muchos archivos a la vez.
-- [ ] Listar los archivos o mostrar el archivo cargado.
-- [ ] Eliminar el archivo.
+- [X] Cargar uno o muchos archivos a la vez.
+- [X] Listar los archivos o mostrar el archivo cargado.
+- [X] Eliminar el archivo.
 
 ** Correo Electrónico
 
 - [ ] Implementar verificación de correo electrónico al realizar registro.
-- [ ] Envío de correo electrónico personalizado.
+- [X] Envío de correo electrónico personalizado.
 
 ** Sheduler y Jobs
 
