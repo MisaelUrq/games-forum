@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Game extends Model
 {
+    use SoftDeletes;
     public function get_image_path() {
         if (strcmp($this->image, 'no image') == 0) {
             return asset('storage/games_covers/no image.jpg');

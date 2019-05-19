@@ -24,6 +24,7 @@ class CreateGamesTable extends Migration
             $table->string('image');
             $table->string('platforms');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
