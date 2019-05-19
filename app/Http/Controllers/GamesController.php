@@ -112,7 +112,12 @@ class GamesController extends Controller
             $game->director = $request->input('director');
             $game->publisher = $request->input('publisher');
             $game->launch_date = $request->input('release_date');
-            $game->image = 'no image';
+            if ($request->hasFile('game_img')) {
+                if (strcmp('no image', $game->image) != 0) {
+                    Storage::delete('storage/games_covers/'.$game->image);
+                }
+                $game->image = explode('games_covers', $request->file('game_img')->storePublicly('public/games_covers'))[1];
+            }
             $game->platforms = $game_platforms;
             $game->ranking = 0;
             $game->save();
@@ -124,7 +129,11 @@ class GamesController extends Controller
     }
     public function destroy($id)
     {
-        Game::find($id)->delete();
+        $game =  Game::find($id);
+        if (strcmp('no image', $game->image) != 0) {
+            Storage::delete('storage/games_covers/'.$game->image);
+        }
+        $game->delete();
         return redirect('games');
     }
 
