@@ -23,8 +23,8 @@
                     @endif
                 </div>
                 <div class="m-1 list-group">
-                    @if(count($posts) > 0)
-                        @foreach($posts as $post)
+                    @if(count($game->posts) > 0)
+                        @foreach($game->posts as $post)
                             <div class="list-group-item-action list-group-item m-1">
                                 <table class="container">
                                     <th class="row">
@@ -73,8 +73,8 @@
                     @endif
                 </div>
                 <div class="m-1 list-group">
-                    @if(count($guides) > 0)
-                        @foreach($guides as $guide)
+                    @if(count($game->guides) > 0)
+                        @foreach($game->guides as $guide)
                             <div class="list-group-item-action list-group-item m-1">
                                 <table class="container">
                                     <th class="row">
@@ -125,8 +125,8 @@
                     @endif
                 </div>
                 <div class="list-group m-1">
-                    @if(count($reviews) > 0)
-                        @foreach($reviews as $review)
+                    @if(count($game->reviews) > 0)
+                        @foreach($game->reviews as $review)
                             <div class="list-group-item-action list-group-item m-1">
                                 <table class="container">
                                     <th class="row">

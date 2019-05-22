@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     public function user() {
-        return $this->belongsTo('App\User', 'id', 'user_id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     public function games() {
-        return $this->belongsTo('App\Games', 'id', 'game_id');
+        return $this->belongsTo('App\Game', 'game_id', 'id');
     }
 
     public function msgs() {

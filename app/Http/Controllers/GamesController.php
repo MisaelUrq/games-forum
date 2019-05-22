@@ -73,13 +73,9 @@ class GamesController extends Controller
 
     public function show($id)
     {
-        $game = Game::find($id);
-        $posts = $game->posts()->get(); // Blog::where('game_id', $id)->get();
-        $guides = $game->guides()->get();
-        $reviews = $game->reviews()->get();
-
+        $game = Game::with(['guides', 'posts', 'reviews'])->where('games.id', $id)->get()->first();
         if (isset($game) && $game->id) {
-            return view('games.show', compact('game', 'posts', 'guides', 'reviews'));
+            return view('games.show', compact('game'));
         } else {
             return redirect('games');
         }
@@ -138,8 +134,8 @@ class GamesController extends Controller
     }
 
     public function post($game_id, $post_id) {
-        $game = Game::find($game_id);
         $post = Blog::find($post_id);
+        $game = Game::find($game_id);
         $msgs = $post->msgs()->get();// PublicMsg::where('post_id', $post_id)->get();
         $is_user_admin = User::is_current_user_webadmin_or_gameadmin($game_id);
 
