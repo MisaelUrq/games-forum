@@ -54,6 +54,19 @@ class User extends Authenticatable
         return false;
     }
 
+    public static function make_gameadmin($user_id, $game_id) {
+        AdminGame::create([
+            'user_id' => $user_id,
+            'game_id' => $game_id
+        ]);
+    }
+
+    public static function make_webadmin($user_id) {
+        WebAdmin::create([
+            'user_id' => $user_id
+        ]);
+    }
+
     public static function is_current_user_webadmin_or_gameadmin($game_id)
     {
         $current_user = \Auth::user();

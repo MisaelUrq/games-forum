@@ -35,12 +35,12 @@
                                                 </h3>
                                             </a>
                                         </div>
-                                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id))
+                                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id) || (\Auth::user() !== null && $post->user_id === \Auth::User()->id))
                                             <div class="col">
                                                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                                     <input name="_method" type="hidden" value="DELETE"/>
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
                                             </div>
                                         @endif
@@ -88,13 +88,17 @@
                                                 </h3>
                                             </a>
                                         </div>
-                                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id))
+                                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id) || (\Auth::user() !== null && $guide->user_id === \Auth::User()->id))
                                             <div class="col">
-                                                <button type="button" class="btn btn-warning m-1"><a href="{{ route('guides.edit', $guide->id) }}">Edit</a></button>
+                                                @if ($guide->user_id === \Auth::user()->id)
+                                                    <button type="button" class="btn btn-warning btn-sm"><a href="{{ route('guides.edit', $guide->id) }}">Edit</a></button>
+                                                @endif
+                                            </div>
+                                            <div class="col">
                                                 <form action="{{ route('guides.destroy', $guide->id) }}"  method="POST">
                                                     <input name="_method" type="hidden" value="DELETE"/>
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
                                             </div>
                                         @endif
@@ -140,13 +144,17 @@
                                                 </h3>
                                             </a>
                                         </div>
-                                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id))
+                                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id) || (\Auth::user() !== null && $review->user_id === \Auth::User()->id))
                                             <div class="col">
-                                                <button type="button" class="btn btn-warning m-1"><a href="{{ route('reviews.edit', $review->id) }}">Edit</a></button>
+                                                @if ($review->user_id === \Auth::User()->id)
+                                                    <button type="button" class="btn btn-warning btn-sm"><a href="{{ route('reviews.edit', $review->id) }}"></a></button>
+                                                @endif
+                                            </div>
+                                            <div class="col">
                                                 <form action="{{ route('reviews.destroy', $review->id) }}"  method="POST">
                                                     <input name="_method" type="hidden" value="DELETE"/>
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
                                             </div>
                                         @endif

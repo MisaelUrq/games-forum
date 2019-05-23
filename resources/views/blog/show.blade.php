@@ -27,7 +27,7 @@
     </div>
     <div class="container">
         <ul class="list-group">
-            <li class="list-group-item list-group-item-primary">{{ $post->title }} <small class="offset-7">By: {{ App\User::find($post->user_id)->name }} on {{ $post->post_date }}</small></li>
+            <li class="list-group-item list-group-item-primary">{{ $post->title }} <small class="offset-7">By: <a href="#">{{ App\User::find($post->user_id)->name }}</a> on {{ $post->post_date }}</small></li>
             <li class="list-group-item">{{ $post->description }}</li>
         </ul>
     </div>
@@ -36,7 +36,7 @@
             <ul class="list-group m-3">
                 <li class="list-group-item list-group-item-secondary">
                     <div class="row">
-                        <p class="m-2">{{ App\User::where('id', $msg->sender_id)->first()->name }}</p>
+                        <p class="m-2"><a href="#">{{ App\User::where('id', $msg->sender_id)->first()->name }}</a></p>
                         <small class="offset-9">
                             {{ $msg->post_date }}
                         </small>
@@ -44,8 +44,16 @@
                             <form class="ml-4" action="{{ route('publicmsg.destroy', $msg->id) }}" method="POST">
                                 <input name="_method" type="hidden" value="DELETE"/>
                                 @csrf
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
+                        @endif
+                    </div>
+                    <div class="row offset-9">
+                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id) && App\User::where('id', $msg->sender_id)->first()->id !== \Auth::user()->id)
+                            <button class="btn btn-info btn-sm m-1">Make GameAdmin</button>
+                        @endif
+                        @if(App\User::is_current_user_webadmin() && App\User::where('id', $msg->sender_id)->first()->id !== \Auth::user()->id)
+                            <button class="btn btn-info btn-sm m-1">Make WebAdmin</button>
                         @endif
                     </div>
                 </li>
@@ -79,7 +87,7 @@
                                 <button class="btn btn-primary mt-1 offset-11">Submit</button>
                             </div>
                         </form>
-                        <input id="{{ 'button_reply' . $msg->key }}" class="btn btn-primary offset-11" name="replyClickMe" type="button" value="Reply" onClick="{{'ToggleTextArea("' . $msg->key . '");'}}" />
+                        <input id="{{ 'button_reply' . $msg->key }}" class="btn btn-primary btn-sm offset-11" name="replyClickMe" type="button" value="Reply" onClick="{{'ToggleTextArea("' . $msg->key . '");'}}" />
                     @endif
                 </li>
             </ul>
@@ -97,7 +105,7 @@
                             <input name="type_of_reply" type="hidden" value="P"/>
                             <input name="post_id" type="hidden" value="{{ $post->id }}"/>
                         </div>
-                        <button class="btn btn-primary mt-3 offset-11">Reply</button>
+                        <button class="btn btn-primary mt-3 offset-11 btn-sm">Reply</button>
                     </form>
                 </li>
             </ul>

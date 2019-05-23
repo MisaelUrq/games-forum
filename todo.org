@@ -65,7 +65,7 @@ Se deberá crear e implementar un cargador de archivos que permita:
 
 ** Correo Electrónico
 
-- [ ] Implementar verificación de correo electrónico al realizar registro.
+- [X] Implementar verificación de correo electrónico al realizar registro.
 - [X] Envío de correo electrónico personalizado.
 
 ** Sheduler y Jobs
@@ -131,6 +131,3 @@ right now the databaes are
 - likes: int
 - sender_user: int
 - receiver_blog: int
-
-31926035845d45
-83a73afdabf323

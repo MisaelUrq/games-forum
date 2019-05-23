@@ -20,7 +20,7 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header bg-primary">
-                                    Your posts.
+                                    Posts.
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group">
