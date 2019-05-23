@@ -136,7 +136,7 @@ class GamesController extends Controller
     public function post($game_id, $post_id) {
         $post = Blog::find($post_id);
         $game = Game::find($game_id);
-        $msgs = $post->msgs()->get();// PublicMsg::where('post_id', $post_id)->get();
+        $msgs = $post->msgs()->get();
         $is_user_admin = User::is_current_user_webadmin_or_gameadmin($game_id);
 
         if ($game !== null && $post !== null) {

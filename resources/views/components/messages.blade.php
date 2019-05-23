@@ -4,9 +4,9 @@
     @endforeach
 @endif
 
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
+@while(Session::has('alert-success'))
+    <div class="alert alert-success">{{ Session::remove('alert-success') }}</div>
+@endwhile
 
 @if(session('error'))
     <div class="alert alert-success">{{ session('error') }}</div>
