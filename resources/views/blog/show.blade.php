@@ -36,7 +36,7 @@
             <ul class="list-group m-3">
                 <li class="list-group-item list-group-item-secondary">
                     <div class="row">
-                        <p class="m-2"><a href="#">{{ App\User::where('id', $msg->sender_id)->first()->name }}</a></p>
+                        <p class="m-2"><a href="#">{{ $msg->get_sender()->name }}</a></p>
                         <small class="offset-9">
                             {{ $msg->post_date }}
                         </small>
@@ -49,11 +49,26 @@
                         @endif
                     </div>
                     <div class="row offset-9">
-                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id) && App\User::where('id', $msg->sender_id)->first()->id !== \Auth::user()->id)
-                            <button class="btn btn-info btn-sm m-1">Make GameAdmin</button>
+                        @if(App\User::is_current_user_webadmin_or_gameadmin($game->id) && $msg->get_sender()->id !== \Auth::user()->id)
+                            <a href="{{ action('UserRolesController@make_gameadmin',
+                                               ['user_id' => $msg->get_sender()->id,
+                                                'game_id' => $game->id]) }}">
+                                <button class="btn btn-info btn-sm m-1">Make GameAdmin</button>
+                            </a>
+                        @elseif(App\User::is_current_user_webadmin_or_gameadmin($game->id))
+                            <a href="{{ action('UserRolesController@remove_gameadmin', ['game_admin_id' => $msg->get_sender()->id,
+                                                                                        'game_id' => $game->id]) }}">
+                                <button class="btn btn-warning btn-sm m-1">Remove GameAdmin</button>
+                            </a>
                         @endif
-                        @if(App\User::is_current_user_webadmin() && App\User::where('id', $msg->sender_id)->first()->id !== \Auth::user()->id)
-                            <button class="btn btn-info btn-sm m-1">Make WebAdmin</button>
+                        @if(App\User::is_current_user_webadmin() && $msg->get_sender()->id !== \Auth::user()->id)
+                            <a href="{{ action('UserRolesController@make_webadmin', $msg->get_sender()->id) }}">
+                                <button class="btn btn-info btn-sm m-1">Make WebAdmin</button>
+                            </a>
+                        @elseif(App\User::is_current_user_webadmin() && strcmp(\Auth::user()->name, 'root') != 0)
+                            <a href="{{ action('UserRolesController@remove_webadmin', $msg->get_sender()->id) }}">
+                                <button class="btn btn-warning btn-sm m-1">Remove WebAdmin</button>
+                            </a>
                         @endif
                     </div>
                 </li>

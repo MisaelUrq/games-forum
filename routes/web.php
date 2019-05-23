@@ -21,8 +21,11 @@ Route::resource('/guides', 'GuidesController');
 Route::resource('/reviews', 'ReviewsController');
 
 Route::get('email/', 'MailController@update');
-
 Route::get('/games/{game}/{post}', 'GamesController@post');
+Route::get('/users/admincontrol/games/create/{user_id}/{game_id}', 'UserRolesController@make_gameadmin');
+Route::get('/users/admincontrol/games/delete/{game_admin_id}/{game_id}', 'UserRolesController@remove_gameadmin');
+Route::get('/users/admincontrol/webadmin/create/{user_id}', 'UserRolesController@make_webadmin');
+Route::get('/users/admincontrol/webadmin/delete/{admin_id}', 'UserRolesController@remove_webadmin');
 
 Auth::routes();
 
