@@ -39,7 +39,7 @@ Se espera un sistema web utilizando Laravel como framework de desarrollo.
   - [ ] polimórfica o polimórfica muchos a muchos.
 - [X] Utilizar "Eager Loading" al consultar múltiples registros con n relaciones.
 - [X] Utilizar al menos en una consulta "Constraining Eager Load".
-- [ ] Declarar "fillable" o "guarded" en al menos un modelo.
+- [X] Declarar "fillable" o "guarded" en al menos un modelo.
 - [ ] Almacenar información adicional en al menos una tabla pivote.
 - [X] Implementar "time stamps" en al menos un modelo.
 - [X] Implementar "Soft Delete" en al menos un modelo.

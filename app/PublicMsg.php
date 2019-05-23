@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class PublicMsg extends Model
 {
     //
+    public function get_sender() {
+        return User::where('id', $this->sender_id)->first();
+    }
 
     public static function get_receiver_msg_from_response_msg($msg) {
         return PublicMsg::where('id', $msg->receiver_id)->first();
